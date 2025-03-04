@@ -275,5 +275,5 @@ DELETE FROM DEPT WHERE DEPARTMENT_NAME="SHIPPING";
 -- Display employees who were hired on thursday
 SELECT * FROM EMPLOYEES WHERE DAYNAME(HIRE_DATE)="Thursday";
 
-
-
+-- query to display the name of the employee who is shipping clerk
+SELECT first_name,last_name FROM EMPLOYEES INNER JOIN JOBS ON EMPLOYEES.JOB_ID=JOBS.JOB_ID WHERE JOBS.JOB_TITLE='Shipping Clerk';
