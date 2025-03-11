@@ -68,4 +68,14 @@ INNER JOIN SECTION ON COURSE.COURSE_NUMBER=SECTION.COURSE_NUMBER
 INNER JOIN GRADE_REPORT ON SECTION.SECTION_IDENTIFIER=GRADE_REPORT.SECTION_IDENTIFIER
 WHERE STUDENT.CLASS=2 AND STUDENT.MAJOR="CS";
 
+--  Insert a new student < ‘Johnson’,25,1, ‘Math’>, in the database
+INSERT INTO STUDENT VALUES('JOHNSON',25,1,'MATH');
 
+-- Change the class of student ‘Smith’ to 2
+UPDATE STUDENT SET CLASS=2 WHERE NAME='SMITH';
+
+-- Insert a new course, < ‘Knowledge Engineering’, ‘CS4390’, 3, ‘CS’>.
+INSERT INTO COURSE VALUES("KNOWLEDGE ENGINEERING","CS4390",3, 'CS');
+
+-- Delete the record for the student whose name is ‘Smith’ and whose student number is 17.
+DELETE FROM STUDENT WHERE NAME='SMITH' OR STUDENT_NUMBER=17;
