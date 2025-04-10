@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 interface Calculate {
     double getArea();
-
     double getPerimeter();
 }
 
