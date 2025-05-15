@@ -1,41 +1,46 @@
+
 import java.io.File;
 import java.util.Scanner;
 
 class DirectoryListing {
+
     static boolean fileFound = false;
-    static String filePath = "";
+    static String filePath = null;
 
     static void listFilesAndDirectories(File directory) {
         if (directory.isDirectory()) {
-            File[] filesanddir = directory.listFiles();
             System.out.println("Files under " + directory.getName());
-            for (File fildir : filesanddir) {
-                System.out.println(fildir.getName());
-                listFilesAndDirectories(fildir);
+            File[] contents = directory.listFiles();
+            for (File file : contents) {
+                System.out.println(file.getName());
+                listFilesAndDirectories(file);
             }
         }
     }
 
-    static void searchFile(File file, String fileName) {
-        if (!fileFound) {
-            File[] files = file.listFiles();
-            for (File insidefile : files) {
-                if (insidefile.isFile()) {
-                    if (insidefile.getName().equals(fileName)) {
-                        filePath = insidefile.getPath();
+    static void searchFile(File directory, String filename) {
+        if (directory.isDirectory() && !fileFound) {
+            File[] files = directory.listFiles();
+            for (File file : files) {
+                if (file.isFile()) {
+                    if (file.getName().equals(filename)) {
                         fileFound = true;
+                        filePath = file.getAbsolutePath();
                         return;
                     }
-                } else {
-                    searchFile(insidefile, fileName);
+                }
+            }
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    searchFile(file, filename);
                 }
             }
         }
-
     }
 }
 
 public class SubDirAndFiles {
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter directory path:");
